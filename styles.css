@@ -66,6 +66,11 @@ body {
   height: 90vh;
 }
 
+#loginmodal,
+#registermodal {
+  font-family: "Noto Serif", serif;
+}
+
 /*Section-1- Home section */
 #home h1,
 #home h2 {
@@ -193,58 +198,55 @@ body {
   background-color: green;
 }
 
-/* Section 3 - Gallery Section*/
-#gallery .container {
-  max-width: 100%;
+/* Section 3 - Gallery Section Done*/
+#package-gallery .card {
+  max-width: 20rem;
+  margin: 10px;
 }
 
-#gallery-images {
-  height: 250px;
+#package-gallery .card-img-top {
+  height: 220px;
+  object-fit: cover;
 }
 
-#gallery .card {
+#package-gallery .footer {
+  height: 80px;
+  object-fit: cover;
+}
+
+#package-gallery .card-text {
+  height: 110px;
+  flex: 1;
+  object-fit: cover;
+}
+
+#package-gallery .card {
   display: flex;
-  flex-direction: column;
-  height: 100%;
 }
 
-#gallery .row {
-  padding-bottom: 25px;
-}
-
-#gallery .card-body {
+#package-gallery .card-body {
   flex: 1;
 }
-
-#gallery .my-hover-effect:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
-  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.5);
+#package-gallery .card-text {
+  flex: 1;
 }
-
-#gallery .card-title,
-#services .card-title {
-  color: #235a9e;
-  font-family: "Playfair Display", serif;
-}
-
-#gallery .card-text,
+#package-gallery .card-text,
 #services .card-text {
   color: #555;
   font-family: "Open Sans", sans-serif;
 }
 
-#gallery .card h6 {
+#package-gallery .card h6 {
   color: #e44d26;
   font-family: "Playfair Display", serif;
 }
 
-#gallery .card .btn {
+#package-gallery .card .btn {
   color: #fff;
   font-family: "Playfair Display", serif;
 }
 
-#gallery button:hover {
+#package-gallery button:hover {
   background-color: green;
 }
 
@@ -252,13 +254,46 @@ body {
   color: orange;
 }
 
-#services {
-  height: 100vh;
+#package-gallery .my-hover-effect:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.5);
+}
+
+#package-gallery .card-title,
+#services .card-title {
+  color: #235a9e;
+  font-family: "Playfair Display", serif;
+}
+
+@media screen and (min-width: 1366px) and (max-width: 1920px) {
+  .container .row {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+}
+
+/* About Us Section Done */
+#aboutUs-title {
+  color: #235a9e;
+  font-family: "Playfair Display", serif;
+  text-align: center;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #235a9e;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+#aboutUs p {
+  font-family: "YourFont", sans-serif;
+  text-align: justify;
 }
 
 /* Heading for all sections */
 #services-heading,
-#gallery-heading {
+#package-gallery-heading,
+#gallery-heading,
+#aboutUs-heading {
   border-bottom: 2px solid #34a2dd;
   display: inline-block;
   padding-bottom: 5px;
@@ -268,6 +303,7 @@ body {
   margin: 30px;
 }
 
+/* Services Section Done*/
 #services .wave-image {
   width: 200px;
   height: 150px;
@@ -283,14 +319,130 @@ body {
 #services .card {
   width: 13rem;
   border: none;
-
   align-items: center;
 }
+
 #services .card-body {
   height: 200px;
+  flex: 1;
 }
+
 #services img {
   padding: 0rem;
+}
+
+/* Section 6 - Photo Gallery Done   */
+
+#gallery .slick-slider img {
+  object-fit: cover;
+  height: 220px;
+  max-width: 100%;
+}
+
+#gallery .slick-center {
+  transform: scale(1.2);
+  transition: transform 0.5s;
+}
+
+#gallery p {
+  font-family: "YourFont", sans-serif;
+}
+
+#gallery .slick-slider .card {
+  max-width: 15rem;
+}
+#gallery .card-body {
+  height: 130px;
+  overflow-y: hidden;
+}
+
+/* Footer Section Done*/
+
+#footer {
+  background-color: #34a2dd;
+  padding: 30px;
+  margin-top: 30px;
+}
+
+#footer h5 {
+  font-family: "Playfair Display", serif;
+  border-bottom: 2px solid white;
+  display: inline-block;
+  padding-bottom: 5px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+#footer ul p {
+  font-family: "YourFont", sans-serif;
+}
+
+#footer .footer-text {
+  color: white;
+}
+
+#footer #footer-brand-logo {
+  width: 50px;
+  margin-right: 10px;
+}
+
+#footer #footer-text {
+  color: white;
+  margin-bottom: 5px;
+  text-align: justify;
+}
+
+#footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+#footer ul li {
+  margin-bottom: 10px;
+}
+
+#footer ul li i,
+#footer ul li img {
+  margin-right: 10px;
+  width: 20px;
+}
+
+#social_media_link i {
+  font-size: 30px;
+  color: white;
+  background-color: #34a2dd;
+  border-radius: 50%;
+  padding: 10px;
+  margin: 5px;
+  transition: background-color 0.3s ease;
+}
+
+#social_media_link i:hover {
+  background-color: #297aa1;
+}
+
+#social_media_link {
+  align-items: center;
+  margin-top: 20px;
+}
+
+#social_media_link h5,
+#social_media_link i {
+  display: inline-block;
+}
+#social_media_link {
+  text-align: center;
+  margin-top: 20px;
+  color: white;
+}
+#social_media_link h5 {
+  margin-bottom: 10px;
+}
+
+.copyright {
+  text-align: center;
+  margin-top: 20px;
+  color: white;
 }
 
 @keyframes wave {
