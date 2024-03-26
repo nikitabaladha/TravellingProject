@@ -5,6 +5,7 @@ body {
 }
 
 /* Navbar Section */
+
 #brand-logo {
   width: 50px;
 }
@@ -75,6 +76,7 @@ body {
 }
 
 /*Section-1- Home section */
+
 #home h1,
 #home h2 {
   font-weight: bold;
@@ -112,6 +114,7 @@ body {
 }
 
 /* Animation Styles for Dynamic Country Names*/
+
 @keyframes changeCountry {
   0%,
   20% {
@@ -144,6 +147,7 @@ body {
 }
 
 /* Section 2 - Booking Section */
+
 #book {
   background: #c5eaff url("images/booking.png") no-repeat left;
   background-size: 50% 100%;
@@ -201,7 +205,8 @@ body {
   background-color: green;
 }
 
-/* Section 3 - Gallery Section Done*/
+/* Section 3 - Gallery Section */
+
 #package-gallery .card {
   max-width: 20rem;
   margin: 10px;
@@ -285,15 +290,6 @@ body {
   }
 }
 
-@media (min-width: 360px) and (max-width: 740px) {
-  #package-gallery .card {
-    height: 32rem;
-  }
-  #package-gallery .footer {
-    padding-top: 12px;
-  }
-}
-
 @media (min-width: 280px) and (max-width: 653px) {
   #package-gallery .card {
     height: 35rem;
@@ -303,7 +299,17 @@ body {
   }
 }
 
+@media (min-width: 360px) and (max-width: 740px) {
+  #package-gallery .card {
+    height: 31rem;
+  }
+  #package-gallery .footer {
+    padding-top: 12px;
+  }
+}
+
 /* Section 4 - About Us Section */
+
 #aboutUs-title {
   color: #235a9e;
   font-family: "Playfair Display", serif;
@@ -320,6 +326,7 @@ body {
 }
 
 /* Heading for all sections */
+
 #services-heading,
 #package-gallery-heading,
 #gallery-heading,
@@ -387,7 +394,7 @@ body {
   overflow-y: hidden;
 }
 
-/* Footer Section Done*/
+/* Footer Section */
 
 #footer {
   background-color: #34a2dd;

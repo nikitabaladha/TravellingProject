@@ -176,7 +176,7 @@ function validateDOB() {
     ageDiff--;
   }
 
-  // Check if age is at least 15
+  // Check if age is at least 15 and not more than 110 years
   if (ageDiff < 15) {
     dobError.text("You must be at least 15 years old to register.");
     return false;
