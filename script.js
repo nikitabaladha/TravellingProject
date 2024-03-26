@@ -51,7 +51,7 @@ function validatePassword() {
 
   if (!passwordPattern.test(password)) {
     passwordError.text(
-      "Password must contain at least 8 characters, 1 number, 1 lowercase letter, and 1 uppercase letter."
+      "Password must contain at least 8 characters, 1 number, 1 lowercase letter, 1 special character, and 1 uppercase letter."
     );
     return false;
   } else {
@@ -74,13 +74,18 @@ $(document).ready(function () {
   $("#contactNo").on("input", function () {
     validateContactNo();
   });
+
+  $("#dob").on("input", function () {
+    validateDOB();
+  });
 });
 
 function validateAndSubmit() {
   if (
     validateRegisterEmail() &&
     validateRegisterPassword() &&
-    validateContactNo()
+    validateContactNo() &&
+    validateDOB()
   ) {
     // Successfully registered
     alert("Signup successful!");
@@ -90,6 +95,8 @@ function validateAndSubmit() {
     $("#registerEmail").val("");
     $("#registerPassword").val("");
     $("#contactNo").val("");
+    $("#dob").val("");
+    $("#gender").val("");
 
     // Close the modal
     $("#registermodal").modal("hide");
@@ -119,7 +126,7 @@ function validateRegisterPassword() {
 
   if (!passwordPattern.test(password)) {
     passwordError.text(
-      "Password must contain at least 8 characters, 1 number, 1 lowercase letter, and 1 uppercase letter."
+      "Password must contain at least 8 characters, 1 number, 1 lowercase letter, 1 special character and 1 uppercase letter."
     );
     return false;
   } else {
@@ -138,6 +145,46 @@ function validateContactNo() {
     return false;
   } else {
     contactNoError.text("");
+    return true;
+  }
+}
+
+function validateDOB() {
+  var dob = $("#dob").val();
+  var dobError = $("#dobError");
+
+  if (!dob) {
+    dobError.text("Please enter your date of birth.");
+    return false;
+  }
+
+  // Convert date of birth to Date object
+  var dobDate = new Date(dob);
+
+  // Get current date
+  var currentDate = new Date();
+
+  // Calculate age difference in years
+  var ageDiff = currentDate.getFullYear() - dobDate.getFullYear();
+
+  // Adjust age difference if birthday hasn't occurred yet this year
+  if (
+    currentDate.getMonth() < dobDate.getMonth() ||
+    (currentDate.getMonth() === dobDate.getMonth() &&
+      currentDate.getDate() < dobDate.getDate())
+  ) {
+    ageDiff--;
+  }
+
+  // Check if age is at least 15
+  if (ageDiff < 15) {
+    dobError.text("You must be at least 15 years old to register.");
+    return false;
+  } else if (ageDiff > 110) {
+    dobError.text("You cannot be older than 110 years.");
+    return false;
+  } else {
+    dobError.text("");
     return true;
   }
 }
@@ -246,12 +293,12 @@ $(document).ready(function () {
         },
       },
       {
-        breakpoint: 375, // Adjusted breakpoint for 375x668 screens
+        breakpoint: 375,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
           centerMode: true,
-          centerPadding: "20px", // Adjust padding for smaller screens
+          centerPadding: "20px",
           dots: false,
         },
       },
