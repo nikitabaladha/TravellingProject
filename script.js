@@ -8,12 +8,22 @@ $(document).ready(function () {
   $("#password").on("input", function () {
     validatePassword();
   });
+
+  $("#loginForm").submit(function (event) {
+    event.preventDefault();
+    validateAndLogin();
+  });
 });
 
 function validateAndLogin() {
+  if ($("#email").val() === "" || $("#password").val() === "") {
+    alert("Please fill in all required fields.");
+    return false;
+  }
+
   if (validateEmail() && validatePassword()) {
-    var email = $("#email").val();
-    var password = $("#password").val();
+    let email = $("#email").val();
+    let password = $("#password").val();
 
     // Successful login
     alert("Login successful");
@@ -28,10 +38,10 @@ function validateAndLogin() {
 }
 
 function validateEmail() {
-  var email = $("#email").val();
-  var emailPattern =
+  let email = $("#email").val();
+  let emailPattern =
     /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-  var emailError = $("#emailError");
+  let emailError = $("#emailError");
 
   if (!emailPattern.test(email)) {
     emailError.text("Please enter a valid email address.");
@@ -43,11 +53,11 @@ function validateEmail() {
 }
 
 function validatePassword() {
-  var password = $("#password").val();
-  var passwordPattern =
+  let password = $("#password").val();
+  let passwordPattern =
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])[0-9a-zA-Z!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{8,}$/;
 
-  var passwordError = $("#passwordError");
+  let passwordError = $("#passwordError");
 
   if (!passwordPattern.test(password)) {
     passwordError.text(
@@ -78,9 +88,33 @@ $(document).ready(function () {
   $("#dob").on("input", function () {
     validateDOB();
   });
+
+  $("#registerForm").submit(function (event) {
+    event.preventDefault();
+    validateAndSubmit();
+  });
 });
 
 function validateAndSubmit() {
+  let fullName = $("#registerUserName").val();
+  let email = $("#registerEmail").val();
+  let password = $("#registerPassword").val();
+  let contactNo = $("#contactNo").val();
+  let dob = $("#dob").val();
+  let gender = $("#gender").val();
+
+  if (
+    fullName.trim() === "" ||
+    email.trim() === "" ||
+    password.trim() === "" ||
+    contactNo.trim() === "" ||
+    dob.trim() === "" ||
+    gender === null
+  ) {
+    alert("Please fill in all the fields.");
+    return false;
+  }
+
   if (
     validateRegisterEmail() &&
     validateRegisterPassword() &&
@@ -104,10 +138,10 @@ function validateAndSubmit() {
 }
 
 function validateRegisterEmail() {
-  var email = $("#registerEmail").val();
-  var emailPattern =
+  let email = $("#registerEmail").val();
+  let emailPattern =
     /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-  var emailError = $("#registerEmailError");
+  let emailError = $("#registerEmailError");
 
   if (!emailPattern.test(email)) {
     emailError.text("Please enter a valid email address.");
@@ -119,9 +153,9 @@ function validateRegisterEmail() {
 }
 
 function validateRegisterPassword() {
-  var password = $("#registerPassword").val();
-  var passwordError = $("#registerPasswordError");
-  var passwordPattern =
+  let password = $("#registerPassword").val();
+  let passwordError = $("#registerPasswordError");
+  let passwordPattern =
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])[0-9a-zA-Z!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{8,}$/;
 
   if (!passwordPattern.test(password)) {
@@ -136,9 +170,9 @@ function validateRegisterPassword() {
 }
 
 function validateContactNo() {
-  var contactNo = $("#contactNo").val();
-  var contactNoError = $("#contactNoError");
-  var contactNoPattern = /^[0-9]{10}$/;
+  let contactNo = $("#contactNo").val();
+  let contactNoError = $("#contactNoError");
+  let contactNoPattern = /^[0-9]{10}$/;
 
   if (!contactNoPattern.test(contactNo)) {
     contactNoError.text("Please enter a valid 10-digit contact number.");
@@ -150,8 +184,8 @@ function validateContactNo() {
 }
 
 function validateDOB() {
-  var dob = $("#dob").val();
-  var dobError = $("#dobError");
+  let dob = $("#dob").val();
+  let dobError = $("#dobError");
 
   if (!dob) {
     dobError.text("Please enter your date of birth.");
@@ -159,13 +193,13 @@ function validateDOB() {
   }
 
   // Convert date of birth to Date object
-  var dobDate = new Date(dob);
+  let dobDate = new Date(dob);
 
   // Get current date
-  var currentDate = new Date();
+  let currentDate = new Date();
 
   // Calculate age difference in years
-  var ageDiff = currentDate.getFullYear() - dobDate.getFullYear();
+  let ageDiff = currentDate.getFullYear() - dobDate.getFullYear();
 
   // Adjust age difference if birthday hasn't occurred yet this year
   if (
@@ -192,41 +226,106 @@ function validateDOB() {
 // Jquery for Booking form validation================================================================
 
 $(document).ready(function () {
-  function bookNow() {
-    var numberOfPersons = parseInt($("#numberOfPersons").val());
-    var startDate = new Date($("#startDate").val());
-    var endDate = new Date($("#endDate").val());
+  $("#numberOfPersons").on("input", function () {
+    validateNumberOfPersons();
+  });
 
-    // Validate number of persons
-    if (numberOfPersons < 1) {
-      alert("Please enter at least 1 person.");
-      return false;
-    }
+  $("#startDate").on("input", function () {
+    validateStartDate();
+  });
 
-    // Validate start date
-    var today = new Date();
-    if (startDate <= today) {
-      alert("Start date should be greater than today's date.");
-      return false;
-    }
+  $("#endDate").on("input", function () {
+    validateEndDate();
+  });
 
-    // Validate end date
-    if (endDate <= startDate) {
-      alert("End date should be greater than the start date.");
-      return false;
-    }
-
-    alert("Booking successful!");
-
-    $("#bookingForm").submit();
-
-    return false;
-  }
-
-  $("#bookNowBtn").on("click", function () {
+  // Attach event handler to form submission
+  $("#bookingForm").submit(function (event) {
+    // Prevent the default form submission
+    event.preventDefault();
+    // Call the function to validate and submit the form
     bookNow();
   });
 });
+
+function bookNow() {
+  let whereTo = $("#whereTo").val();
+  let startDate = $("#startDate").val();
+  let endDate = $("#endDate").val();
+  let numberOfPersons = $("#numberOfPersons").val();
+  let description = $("#description").val();
+
+  if (
+    whereTo.trim() === "" ||
+    startDate.trim() === "" ||
+    endDate.trim() === "" ||
+    numberOfPersons.trim() === "" ||
+    description.trim() === ""
+  ) {
+    alert("Please fill in all the fields.");
+    return false;
+  }
+
+  if (validateStartDate() && validateEndDate() && validateNumberOfPersons()) {
+    // Successfully registered
+    alert("Signup successful!");
+
+    // Clear the form
+    $("#whereTo").val("");
+    $("#numberOfPersons").val("");
+    $("#startDate").val("");
+    $("#endDate").val("");
+    $("#description").val("");
+  }
+}
+
+function validateStartDate() {
+  let startDateError = $("#startDateError");
+  let startDate = new Date($("#startDate").val());
+  let today = new Date();
+
+  if (startDate <= today) {
+    startDateError.text("Start date should be greater than today's date.");
+    return false;
+  } else {
+    startDateError.text("");
+    return true;
+  }
+}
+
+function validateEndDate() {
+  let endDateError = $("#endDateError");
+  let startDate = new Date($("#startDate").val());
+  let endDate = new Date($("#endDate").val());
+
+  // Calculate the difference in milliseconds between start and end dates
+  let timeDiff = endDate.getTime() - startDate.getTime();
+
+  // Convert the difference to days
+  let diffDays = timeDiff / (1000 * 3600 * 24);
+
+  if (endDate <= startDate || diffDays > 30) {
+    endDateError.text(
+      "End date should be greater than start date and within one month."
+    );
+    return false;
+  } else {
+    endDateError.text("");
+    return true;
+  }
+}
+
+function validateNumberOfPersons() {
+  let numberOfPersonsError = $("#numberOfPersonsError");
+  let numberOfPersons = $("#numberOfPersons").val();
+
+  if (numberOfPersons < 1) {
+    numberOfPersonsError.text("Please enter at least 1 person.");
+    return false;
+  } else {
+    numberOfPersonsError.text("");
+    return true;
+  }
+}
 
 // Photo Gallery slider================================================
 

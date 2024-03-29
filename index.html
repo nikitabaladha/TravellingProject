@@ -102,7 +102,6 @@
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button class="btn btn-outline-success me-md-2" type="button" id="btn-login" data-bs-toggle="modal"
                         data-bs-target="#loginmodal">Login</button>
-
                     <button class="btn btn-outline-success me-md-2" type="button" id="btn-register"
                         data-bs-toggle="modal" data-bs-target="#registermodal">Register</button>
                 </div>
@@ -121,15 +120,15 @@
                 <div class="modal-body">
                     <form id="loginForm">
                         <div class="mb-3">
-                            <input type="email" class="form-control" placeholder="Email ID" id="email">
+                            <input type="email" class="form-control" placeholder="Email ID" id="email" required>
                             <p id="emailError" class="text-danger"></p>
                         </div>
                         <div class="mb-3">
-                            <input type="password" class="form-control" placeholder="Password" id="password">
+                            <input type="password" class="form-control" placeholder="Password" id="password" required>
                             <p id="passwordError" class="text-danger"></p>
                         </div>
                         <div class="mb-3">
-                            <button type="button" class="btn btn-primary" onclick="validateAndLogin()">Login</button>
+                            <button type="submit" class="btn btn-primary">Login</button>
                         </div>
                         <p>Don't have an account? <a href="#registermodal" data-bs-toggle="modal">Sign Up</a></p>
                     </form>
@@ -150,15 +149,14 @@
                     <form id="registerForm">
                         <div class="mb-3">
                             <input type="text" class="form-control" id="registerUserName" placeholder="Fullname"
-                                id="fullname">
+                                id="fullname" required>
                         </div>
                         <div class="mb-3">
-                            <input type="date" class="form-control" id="dob" placeholder="Date of Birth"
-                                max="2006-12-31" min="1914-01-01">
+                            <input type="date" class="form-control" id="dob" placeholder="Date of Birth" required>
                             <p id="dobError" class="text-danger"></p>
                         </div>
                         <div class="mb-3">
-                            <select class="form-select" id="gender" aria-label="Gender">
+                            <select class="form-select" id="gender" aria-label="Gender" required>
                                 <option selected disabled>Gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
@@ -167,20 +165,21 @@
                             <p id="genderError" class="text-danger"></p>
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="contactNo" placeholder="Contact No">
+                            <input type="text" class="form-control" id="contactNo" placeholder="Contact No" required>
                             <p id="contactNoError" class="text-danger"></p>
                         </div>
 
                         <div class="mb-3">
-                            <input type="email" class="form-control" id="registerEmail" placeholder="Email ID">
+                            <input type="email" class="form-control" id="registerEmail" placeholder="Email ID" required>
                             <p id="registerEmailError" class="text-danger"></p>
                         </div>
                         <div class="mb-3">
-                            <input type="password" class="form-control" id="registerPassword" placeholder="Password">
+                            <input type="password" class="form-control" id="registerPassword" placeholder="Password"
+                                required>
                             <p id="registerPasswordError" class="text-danger"></p>
                         </div>
                         <div class="mb-3">
-                            <button type="button" class="btn btn-primary" onclick="validateAndSubmit()">Submit</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                         <p>Already have an account? <a href="#loginmodal" data-bs-toggle="modal">Sign in</a></p>
                     </form>
@@ -206,12 +205,12 @@
                 <div class="card h-70">
                     <div class="card-body d-flex flex-column justify-content-between">
                         <!-- Form for booking details -->
-                        <form id="bookingForm" onsubmit="return bookNow()">
+                        <form id="bookingForm">
                             <!-- Where to dropdown -->
                             <div class="form-group row">
                                 <label for="whereTo">Where to:</label>
                                 <div class="col-md-12">
-                                    <select class="form-control" id="whereTo" name="whereTo">
+                                    <select class="form-control" id="whereTo" name="whereTo" required>
                                         <option value="united states">United States</option>
                                         <option value="india">India</option>
                                         <option value="france">France</option>
@@ -226,7 +225,9 @@
                                 <label for="numberOfPersons">How Many Person:</label>
                                 <div>
                                     <input type="number" class="form-control" id="numberOfPersons"
-                                        name="numberOfPersons" min="1">
+                                        name="numberOfPersons" min="1" required>
+                                    <p id="numberOfPersonsError" class="text-danger"></p>
+
                                 </div>
                             </div>
 
@@ -234,8 +235,8 @@
                             <div class="form-group row">
                                 <label for="startDate">Start Date:</label>
                                 <div>
-                                    <input type="date" class="form-control" id="startDate" name="startDate"
-                                        min="2024-02-25">
+                                    <input type="date" class="form-control" id="startDate" name="startDate" required>
+                                    <p id="startDateError" class="text-danger"></p>
                                 </div>
                             </div>
 
@@ -243,8 +244,8 @@
                             <div class="form-group row">
                                 <label for="endDate">End Date:</label>
                                 <div>
-                                    <input type="date" class="form-control" id="endDate" name="endDate"
-                                        min="2024-02-25">
+                                    <input type="date" class="form-control" id="endDate" name="endDate" required>
+                                    <p id="endDateError" class="text-danger"></p>
                                 </div>
                             </div>
 
@@ -253,16 +254,14 @@
                                 <label for="description">Description:</label>
                                 <div>
                                     <textarea class="form-control" id="description" name="description" rows="3"
-                                        minlength="50" maxlength="500"
-                                        placeholder="Enter Your Name And Details "></textarea>
+                                        placeholder="Enter Your Name And Details" required></textarea>
                                 </div>
                             </div>
 
                             <!-- Book Now Button -->
                             <div class="form-group row mt-2">
                                 <div class="mx-auto">
-                                    <button type="button" id="bookNowBtn" class="btn btn-primary"
-                                        onclick="bookNow()">Book Now</button>
+                                    <button type="submit" class="btn btn-primary">Book Now</button>
                                 </div>
                             </div>
                         </form>
@@ -814,7 +813,7 @@
     <!-- Section 7 - Footer -->
     <div id="footer" class="container-fluid">
         <div class="container-fluid">
-            <div class="row footer-text">
+            <div class="row footer-text ">
                 <div class=" col-md-8">
                     <div class="row ">
                         <div class="col-md-4">
