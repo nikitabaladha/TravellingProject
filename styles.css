@@ -331,17 +331,6 @@ body {
 
 /*Section 5 - Services Section*/
 
-#services .wave-image {
-  width: 200px;
-  height: 150px;
-  object-fit: contain;
-  border-radius: 0;
-}
-
-#services .wave-image:hover {
-  animation: wave 0.5s ease-in-out forwards;
-}
-
 #services .card {
   width: 13rem;
   border: none;
@@ -355,6 +344,33 @@ body {
 
 #services img {
   padding: 0rem;
+}
+
+#services .wave-image {
+  width: 200px;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+#services .wave-image:hover {
+  animation: wave 0.5s ease-in-out forwards;
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25%,
+  75% {
+    transform: rotate(20deg);
+  }
+
+  50% {
+    transform: rotate(-20deg);
+  }
 }
 
 /* Section 6 - Photo Gallery   */
@@ -451,11 +467,13 @@ body {
 #social_media_link i {
   display: inline-block;
 }
+
 #social_media_link {
   text-align: center;
   margin-top: 20px;
   color: white;
 }
+
 #social_media_link h5 {
   margin-bottom: 10px;
 }
@@ -464,26 +482,4 @@ body {
   text-align: center;
   margin-top: 20px;
   color: white;
-}
-
-@keyframes wave {
-  0%,
-  100% {
-    transform: rotate(0deg);
-  }
-
-  25%,
-  75% {
-    transform: rotate(20deg);
-  }
-
-  50% {
-    transform: rotate(-20deg);
-  }
-}
-
-@media (min-width: 768px) {
-  .col-md-6 {
-    width: 50%;
-  }
 }
