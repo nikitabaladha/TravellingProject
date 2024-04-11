@@ -108,6 +108,7 @@ body {
 #home .brand-name {
   font-family: "Lobster", cursive;
 }
+
 #home button:hover {
   background-color: green;
   color: #fff;
@@ -157,7 +158,6 @@ body {
   align-items: center;
   color: #333;
   position: relative;
-  z-index: 1;
 }
 
 #book .card-img {
@@ -165,7 +165,7 @@ body {
   height: 225px;
 }
 
-#book .row.no-gutters {
+#book .row .no-gutters {
   margin-right: 0;
   margin-left: 0;
 }
@@ -219,25 +219,14 @@ body {
 
 #package-gallery .footer {
   height: 80px;
-  object-fit: cover;
 }
 
 #package-gallery .card-text {
   height: 110px;
-  flex: 1;
-  object-fit: cover;
 }
 
 #package-gallery .card {
   display: flex;
-}
-
-#package-gallery .card-body {
-  flex: 1;
-}
-
-#package-gallery .card-text {
-  flex: 1;
 }
 
 #package-gallery .card-text,
@@ -345,7 +334,6 @@ body {
 #services .wave-image {
   width: 200px;
   height: 150px;
-  object-fit: cover;
   object-fit: contain;
   border-radius: 0;
 }
@@ -375,11 +363,6 @@ body {
   object-fit: cover;
   height: 220px;
   max-width: 100%;
-}
-
-#gallery .slick-center {
-  transform: scale(1.2);
-  transition: transform 0.5s;
 }
 
 #gallery p {
