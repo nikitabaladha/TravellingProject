@@ -22,9 +22,6 @@ function validateAndLogin() {
   }
 
   if (validateEmail() && validatePassword()) {
-    let email = $("#email").val();
-    let password = $("#password").val();
-
     // Successful login
     alert("Login successful");
 
@@ -39,8 +36,10 @@ function validateAndLogin() {
 
 function validateEmail() {
   let email = $("#email").val();
+
   let emailPattern =
     /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
   let emailError = $("#emailError");
 
   if (!emailPattern.test(email)) {
@@ -54,6 +53,7 @@ function validateEmail() {
 
 function validatePassword() {
   let password = $("#password").val();
+
   let passwordPattern =
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])[0-9a-zA-Z!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{8,}$/;
 
@@ -83,6 +83,10 @@ $(document).ready(function () {
 
   $("#contactNo").on("input", function () {
     validateContactNo();
+  });
+
+  $("#gender").on("change", function () {
+    validateRegisterGender();
   });
 
   $("#dob").on("input", function () {
@@ -119,7 +123,8 @@ function validateAndSubmit() {
     validateRegisterEmail() &&
     validateRegisterPassword() &&
     validateContactNo() &&
-    validateDOB()
+    validateDOB() &&
+    validateRegisterGender()
   ) {
     // Successfully registered
     alert("Signup successful!");
@@ -152,11 +157,25 @@ function validateRegisterEmail() {
   }
 }
 
+function validateRegisterGender() {
+  let gender = $("#gender").val();
+  let genderPattern = /^(Male|Female|Other)$/i;
+  let genderError = $("#genderError");
+
+  if (!genderPattern.test(gender)) {
+    genderError.text("Please enter a valid gender.");
+    return false;
+  } else {
+    genderError.text("");
+    return true;
+  }
+}
+
 function validateRegisterPassword() {
   let password = $("#registerPassword").val();
-  let passwordError = $("#registerPasswordError");
   let passwordPattern =
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])[0-9a-zA-Z!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{8,}$/;
+  let passwordError = $("#registerPasswordError");
 
   if (!passwordPattern.test(password)) {
     passwordError.text(
@@ -171,8 +190,8 @@ function validateRegisterPassword() {
 
 function validateContactNo() {
   let contactNo = $("#contactNo").val();
-  let contactNoError = $("#contactNoError");
   let contactNoPattern = /^[0-9]{10}$/;
+  let contactNoError = $("#contactNoError");
 
   if (!contactNoPattern.test(contactNo)) {
     contactNoError.text("Please enter a valid 10-digit contact number.");
@@ -341,11 +360,31 @@ $(document).ready(function () {
 
     responsive: [
       {
+        breakpoint: 1366,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          centerMode: true,
+          centerPadding: "40px",
+          dots: false,
+        },
+      },
+      {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
+          centerMode: true,
+          centerPadding: "40px",
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
           centerMode: true,
           centerPadding: "40px",
           dots: false,
@@ -368,26 +407,6 @@ $(document).ready(function () {
           slidesToScroll: 1,
           centerMode: true,
           centerPadding: "40px",
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: "40px",
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: "20px",
           dots: false,
         },
       },
